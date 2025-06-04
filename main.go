@@ -25,6 +25,11 @@ type Director struct {
 
 var movies []Movie
 
+func getMovies(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "application/jsom")
+	json.NewEncoder(w).Encode(movies)
+}
+
 func main(){
 	r := mux.NewRouter()
 
