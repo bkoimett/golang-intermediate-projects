@@ -13,9 +13,9 @@ import (
 
 type Movie struct {
 	ID string `json:"id"`
-	Isbn string `json:"id"`
-	Title string `json:"id"`
-	Director *Director
+	Isbn string `json:"isbm"`
+	Title string `json:"title"`
+	Director *Director `json:"director"`
 }
 
 type Director struct {
