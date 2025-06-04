@@ -1,41 +1,41 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
-	"encoding/json"
 	"math/rand"
 	"net/http"
 	"strconv"
-	
+
 	"github.com/gorilla/mux"
 )
 
 type Movie struct {
-	ID string `json:"id"`
-	Isbn string `json:"isbm"`
-	Title string `json:"title"`
+	ID       string    `json:"id"`
+	Isbn     string    `json:"isbm"`
+	Title    string    `json:"title"`
 	Director *Director `json:"director"`
 }
 
 type Director struct {
 	Firstname string `json:"firstname"`
-	Lastname string `json:"lastname"`
+	Lastname  string `json:"lastname"`
 }
 
 var movies []Movie
 
-func getMovies(w http.ResponseWriter, r *http.Request){
+func getMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/jsom")
 	json.NewEncoder(w).Encode(movies)
 }
 
-func deleteMovie(w http.ResponseWriter, r *http.Request){
+func deleteMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 
 	for index, item := range movies {
-		if item.ID == params["id"]{
+		if item.ID == params["id"] {
 			movies = append(movies[:index], movies[index+1:]...)
 			break
 		}
@@ -71,7 +71,7 @@ func updateMovie(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	for index, item := range movies {
-		if item.ID == params["id"]{
+		if item.ID == params["id"] {
 			movies = append(movies[:index], movies[index+1:]...)
 			var movie Movie
 			_ = json.NewDecoder(r.Body).Decode(&movie)
@@ -83,7 +83,7 @@ func updateMovie(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func main(){
+func main() {
 	r := mux.NewRouter()
 
 	movies = append(movies, Movie{ID: "1", Isbn: "43277", Title: "Dr.Doomsday", Director: &Director{Firstname: "Eddy", Lastname: "Murphy"}})
