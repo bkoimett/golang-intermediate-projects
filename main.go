@@ -35,7 +35,7 @@ func deleteMovie(w http.ResponseWriter, r *http.Request){
 	params := mux.Vars(r)
 
 	for index, item := range movies {
-		if item.ID == params["ID"]{
+		if item.ID == params["id"]{
 			movies = append(movies[:index], movies[index+1:]...)
 			break
 		}
