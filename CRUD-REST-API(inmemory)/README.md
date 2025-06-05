@@ -44,7 +44,7 @@ go run main.go
 ```
 The server starts on:
 
-[arduino](http://localhost:8080)
+[localhost:8080](http://localhost:8080)
 
 ## 🔗 API Endpoints
 
