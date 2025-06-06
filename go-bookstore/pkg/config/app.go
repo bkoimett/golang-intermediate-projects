@@ -7,7 +7,7 @@ import (
 
 // enables interactiom with db
 var (
-	db = gorm.DB
+	db * gorm.DB
 )
 
 // opens connection to db
