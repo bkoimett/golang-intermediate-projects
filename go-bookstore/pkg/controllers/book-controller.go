@@ -38,7 +38,7 @@ func GetBookById(w http.ResponseWriter, r *http.Request){
 
 func CreateBook(w http.ResponseWriter, r *http.Request){
 	CreateBook := &models.Book{}
-	utils.ParseBody(r, CreateBook)//change to sth for db
+	utils.ParseBody(r, CreateBook)//change from json to a form that  db can understand
 	b := CreateBook.CreateBook() //--magi db---
 	res, _ := json.Marshal(b)//change to json
 	w.WriteHeader(http.StatusOK)
